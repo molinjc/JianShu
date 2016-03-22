@@ -1,0 +1,20 @@
+//
+//  JianShu.pch
+//  JianShu
+//
+//  Created by molin on 16/2/23.
+//  Copyright © 2016年 molin. All rights reserved.
+//
+
+#ifndef JianShu_pch
+#define JianShu_pch
+
+#define JCLog(string,...) NSLog(@"行号:%d,类与方法:%s,内容:%@",__LINE__,__func__,[NSString stringWithFormat:(string), ##__VA_ARGS__]);
+
+// view 扩展
+#import "UIView+Coordinate.h"
+
+// 颜色
+#define JCColor_red_1 [UIColor colorWithRed:0.863 green:0.310 blue:0.251 alpha:1.000]
+
+#endif /* JianShu_pch */

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "74B07223666256477708A706A1583A82CD2D9CD2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8ED60A1D89E456C3ECD9D93705963E649CA63A39" : 0,
+    "74B07223666256477708A706A1583A82CD2D9CD2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "71EA5CB5-FEC0-4FE9-B20A-CFE715761D2A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8ED60A1D89E456C3ECD9D93705963E649CA63A39" : "",
+    "74B07223666256477708A706A1583A82CD2D9CD2" : "JianShu\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "JianShu",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "JianShu.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/molinjc\/JianShu.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "74B07223666256477708A706A1583A82CD2D9CD2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/gitcafe.com\/molin\/imitate.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8ED60A1D89E456C3ECD9D93705963E649CA63A39"
+    }
+  ]
+}
