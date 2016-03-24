@@ -21,7 +21,6 @@
 		354902661C7F12DB00E09B83 /* JCFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 354902651C7F12DB00E09B83 /* JCFriendViewController.m */; };
 		3549026A1C7F12FA00E09B83 /* JCMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 354902691C7F12FA00E09B83 /* JCMyViewController.m */; };
 		35645DEF1C80352500E6494C /* JCTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35645DEE1C80352500E6494C /* JCTabBar.m */; };
-		35645DF31C803D6E00E6494C /* UIView+Coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35645DF21C803D6E00E6494C /* UIView+Coordinate.m */; };
 		35645DF71C804D7000E6494C /* JCWriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35645DF61C804D7000E6494C /* JCWriteViewController.m */; };
 		35645DFA1C804FDF00E6494C /* JCFindNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35645DF91C804FDF00E6494C /* JCFindNavigationController.m */; };
 		35645DFE1C80505500E6494C /* JCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35645DFD1C80505500E6494C /* JCNavigationBar.m */; };
@@ -29,15 +28,18 @@
 		358070691CA0E93900169420 /* JCRoundImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 358070681CA0E93900169420 /* JCRoundImageButton.m */; };
 		358E96621C86D09A0073EA04 /* JCHeadNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 358E96611C86D09A0073EA04 /* JCHeadNavigationViewController.m */; };
 		358E96651C86D1370073EA04 /* JCHeadNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 358E96641C86D1370073EA04 /* JCHeadNavigationBar.m */; };
-		358E96681C87283B0073EA04 /* UIViewController+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = 358E96671C87283A0073EA04 /* UIViewController+Replace.m */; };
 		358E966B1C8814EB0073EA04 /* JCOptionNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 358E966A1C8814EB0073EA04 /* JCOptionNavigationBar.m */; };
 		358E966E1C88331A0073EA04 /* JCOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 358E966D1C88331A0073EA04 /* JCOptionViewController.m */; };
+		35A4C3EA1CA37DED0093F21D /* NSMutableAttributedString+JCImageAndText.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A4C3E91CA37DED0093F21D /* NSMutableAttributedString+JCImageAndText.m */; };
 		35D2A7061C9FD32B009AC0B6 /* JCCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D2A7051C9FD32B009AC0B6 /* JCCellModel.m */; };
 		35D2A7091C9FE037009AC0B6 /* FindJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 35D2A7081C9FE036009AC0B6 /* FindJSON.json */; };
 		35D2A70C1C9FEA13009AC0B6 /* NSObject+JCJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D2A70B1C9FEA13009AC0B6 /* NSObject+JCJSON.m */; };
 		35D4CE451C83EC43002E32B0 /* JCSliderButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D4CE441C83EC43002E32B0 /* JCSliderButton.m */; };
 		35D4CE491C841D30002E32B0 /* JCFindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D4CE481C841D30002E32B0 /* JCFindView.m */; };
 		35D4CE511C8675C5002E32B0 /* JCScrollAndPageControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D4CE501C8675C5002E32B0 /* JCScrollAndPageControlView.m */; };
+		35F5ADDE1CA3DF970086217E /* UIColor+JCString.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F5ADD91CA3DF970086217E /* UIColor+JCString.m */; };
+		35F5ADDF1CA3DF970086217E /* UIView+Coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F5ADDB1CA3DF970086217E /* UIView+Coordinate.m */; };
+		35F5ADE01CA3DF970086217E /* UIViewController+Replace.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F5ADDD1CA3DF970086217E /* UIViewController+Replace.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +70,6 @@
 		354902691C7F12FA00E09B83 /* JCMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCMyViewController.m; sourceTree = "<group>"; };
 		35645DED1C80352500E6494C /* JCTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTabBar.h; sourceTree = "<group>"; };
 		35645DEE1C80352500E6494C /* JCTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTabBar.m; sourceTree = "<group>"; };
-		35645DF11C803D6E00E6494C /* UIView+Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Coordinate.h"; sourceTree = "<group>"; };
-		35645DF21C803D6E00E6494C /* UIView+Coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Coordinate.m"; sourceTree = "<group>"; };
 		35645DF51C804D7000E6494C /* JCWriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCWriteViewController.h; sourceTree = "<group>"; };
 		35645DF61C804D7000E6494C /* JCWriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCWriteViewController.m; sourceTree = "<group>"; };
 		35645DF81C804FDF00E6494C /* JCFindNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCFindNavigationController.h; sourceTree = "<group>"; };
@@ -84,12 +84,12 @@
 		358E96611C86D09A0073EA04 /* JCHeadNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHeadNavigationViewController.m; sourceTree = "<group>"; };
 		358E96631C86D1370073EA04 /* JCHeadNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHeadNavigationBar.h; sourceTree = "<group>"; };
 		358E96641C86D1370073EA04 /* JCHeadNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCHeadNavigationBar.m; sourceTree = "<group>"; };
-		358E96661C87283A0073EA04 /* UIViewController+Replace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Replace.h"; sourceTree = "<group>"; };
-		358E96671C87283A0073EA04 /* UIViewController+Replace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Replace.m"; sourceTree = "<group>"; };
 		358E96691C8814EB0073EA04 /* JCOptionNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCOptionNavigationBar.h; sourceTree = "<group>"; };
 		358E966A1C8814EB0073EA04 /* JCOptionNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCOptionNavigationBar.m; sourceTree = "<group>"; };
 		358E966C1C88331A0073EA04 /* JCOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCOptionViewController.h; sourceTree = "<group>"; };
 		358E966D1C88331A0073EA04 /* JCOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCOptionViewController.m; sourceTree = "<group>"; };
+		35A4C3E81CA37DED0093F21D /* NSMutableAttributedString+JCImageAndText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+JCImageAndText.h"; sourceTree = "<group>"; };
+		35A4C3E91CA37DED0093F21D /* NSMutableAttributedString+JCImageAndText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+JCImageAndText.m"; sourceTree = "<group>"; };
 		35D2A7041C9FD32B009AC0B6 /* JCCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCCellModel.h; sourceTree = "<group>"; };
 		35D2A7051C9FD32B009AC0B6 /* JCCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCCellModel.m; sourceTree = "<group>"; };
 		35D2A7081C9FE036009AC0B6 /* FindJSON.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FindJSON.json; sourceTree = "<group>"; };
@@ -101,6 +101,12 @@
 		35D4CE481C841D30002E32B0 /* JCFindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCFindView.m; sourceTree = "<group>"; };
 		35D4CE4F1C8675C5002E32B0 /* JCScrollAndPageControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCScrollAndPageControlView.h; sourceTree = "<group>"; };
 		35D4CE501C8675C5002E32B0 /* JCScrollAndPageControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCScrollAndPageControlView.m; sourceTree = "<group>"; };
+		35F5ADD81CA3DF970086217E /* UIColor+JCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+JCString.h"; sourceTree = "<group>"; };
+		35F5ADD91CA3DF970086217E /* UIColor+JCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+JCString.m"; sourceTree = "<group>"; };
+		35F5ADDA1CA3DF970086217E /* UIView+Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Coordinate.h"; sourceTree = "<group>"; };
+		35F5ADDB1CA3DF970086217E /* UIView+Coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Coordinate.m"; sourceTree = "<group>"; };
+		35F5ADDC1CA3DF970086217E /* UIViewController+Replace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Replace.h"; sourceTree = "<group>"; };
+		35F5ADDD1CA3DF970086217E /* UIViewController+Replace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Replace.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,11 +185,11 @@
 		354902281C7AEDB900E09B83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				35F5ADD71CA3DF970086217E /* Extend */,
 				358070631CA0E26D00169420 /* Cells */,
 				35D4CE461C841CE7002E32B0 /* Find */,
 				35D4CE421C83EC09002E32B0 /* Button */,
 				35645DFB1C80501E00E6494C /* NavigationBar */,
-				35645DF01C803D1D00E6494C /* View Extend */,
 				35645DEC1C8034FD00E6494C /* TabBar */,
 			);
 			path = Views;
@@ -287,17 +293,6 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		35645DF01C803D1D00E6494C /* View Extend */ = {
-			isa = PBXGroup;
-			children = (
-				35645DF11C803D6E00E6494C /* UIView+Coordinate.h */,
-				35645DF21C803D6E00E6494C /* UIView+Coordinate.m */,
-				358E96661C87283A0073EA04 /* UIViewController+Replace.h */,
-				358E96671C87283A0073EA04 /* UIViewController+Replace.m */,
-			);
-			path = "View Extend";
-			sourceTree = "<group>";
-		};
 		35645DF41C804D4A00E6494C /* Write */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,9 +324,19 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		35A4C3E71CA37D710093F21D /* AttributedProcess */ = {
+			isa = PBXGroup;
+			children = (
+				35A4C3E81CA37DED0093F21D /* NSMutableAttributedString+JCImageAndText.h */,
+				35A4C3E91CA37DED0093F21D /* NSMutableAttributedString+JCImageAndText.m */,
+			);
+			path = AttributedProcess;
+			sourceTree = "<group>";
+		};
 		35D2A6FE1C9FCE06009AC0B6 /* Mode */ = {
 			isa = PBXGroup;
 			children = (
+				35A4C3E71CA37D710093F21D /* AttributedProcess */,
 				35D2A7031C9FD31D009AC0B6 /* CellModel */,
 			);
 			path = Mode;
@@ -378,6 +383,19 @@
 				35D4CE501C8675C5002E32B0 /* JCScrollAndPageControlView.m */,
 			);
 			path = Find;
+			sourceTree = "<group>";
+		};
+		35F5ADD71CA3DF970086217E /* Extend */ = {
+			isa = PBXGroup;
+			children = (
+				35F5ADD81CA3DF970086217E /* UIColor+JCString.h */,
+				35F5ADD91CA3DF970086217E /* UIColor+JCString.m */,
+				35F5ADDA1CA3DF970086217E /* UIView+Coordinate.h */,
+				35F5ADDB1CA3DF970086217E /* UIView+Coordinate.m */,
+				35F5ADDC1CA3DF970086217E /* UIViewController+Replace.h */,
+				35F5ADDD1CA3DF970086217E /* UIViewController+Replace.m */,
+			);
+			path = Extend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -461,14 +479,15 @@
 				3549026A1C7F12FA00E09B83 /* JCMyViewController.m in Sources */,
 				3549025E1C7E932100E09B83 /* JCFindViewController.m in Sources */,
 				354902621C7E943700E09B83 /* JCFollowViewController.m in Sources */,
-				35645DF31C803D6E00E6494C /* UIView+Coordinate.m in Sources */,
 				35645DFE1C80505500E6494C /* JCNavigationBar.m in Sources */,
 				35D2A7061C9FD32B009AC0B6 /* JCCellModel.m in Sources */,
-				358E96681C87283B0073EA04 /* UIViewController+Replace.m in Sources */,
 				358070691CA0E93900169420 /* JCRoundImageButton.m in Sources */,
+				35F5ADDE1CA3DF970086217E /* UIColor+JCString.m in Sources */,
+				35F5ADDF1CA3DF970086217E /* UIView+Coordinate.m in Sources */,
 				35D4CE451C83EC43002E32B0 /* JCSliderButton.m in Sources */,
 				352E905B1C99ACC1006A704A /* JCOptionItemView.m in Sources */,
 				358E96621C86D09A0073EA04 /* JCHeadNavigationViewController.m in Sources */,
+				35A4C3EA1CA37DED0093F21D /* NSMutableAttributedString+JCImageAndText.m in Sources */,
 				354902661C7F12DB00E09B83 /* JCFriendViewController.m in Sources */,
 				3549025A1C7E929000E09B83 /* JCMainTabBarController.m in Sources */,
 				354902151C7AED4600E09B83 /* AppDelegate.m in Sources */,
@@ -478,6 +497,7 @@
 				354902121C7AED4600E09B83 /* main.m in Sources */,
 				35D4CE511C8675C5002E32B0 /* JCScrollAndPageControlView.m in Sources */,
 				35D2A70C1C9FEA13009AC0B6 /* NSObject+JCJSON.m in Sources */,
+				35F5ADE01CA3DF970086217E /* UIViewController+Replace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

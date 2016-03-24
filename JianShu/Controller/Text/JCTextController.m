@@ -9,10 +9,11 @@
 #import "JCTextController.h"
 
 #import "UIViewController+Replace.h"
+#import "NSMutableAttributedString+JCImageAndText.h"
 
-@interface JCTextController ()<UIScrollViewDelegate>
+@interface JCTextController ()<UIScrollViewDelegate,UITextViewDelegate>
 
-@property (nonatomic, strong) UIScrollView    *scrollView;
+@property (nonatomic, strong) UITextView      *textView;
 
 @property (nonatomic, assign) CGFloat         recordBeginDragging_y; // 记录开始拖动的Y
 
@@ -32,10 +33,11 @@
     
     self.view.backgroundColor = [UIColor grayColor];
     
-    [self.view addSubview:self.scrollView];
+    [self.view addSubview:self.textView];
     [self.view addSubview:self.functionOptionView];
     
     [self addGestureRecognizer];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,11 +48,11 @@
     [super viewWillAppear:animated];
     
     // *** 布局 ***
-    self.scrollView.frame = self.view.bounds;
-    self.scrollView.contentSize = self.view.size;
+    self.textView.frame = self.view.bounds;
+    self.textView.contentSize = self.view.size;
     self.functionOptionView.width = self.view.width / 3;
     self.functionOptionView.height = self.view.height;
-    self.functionOptionView.leftSpacingByView(self.scrollView,0);
+    self.functionOptionView.leftSpacingByView(self.textView,0);
     
     // 隐藏tabBar
     self.tabBarController.tabBar.hidden = YES;
@@ -105,8 +107,8 @@
 - (void)viewLeftSlipAnimate {
     [UIView animateWithDuration:0.15 animations:^{
         self.navigationController.navigationBar.x = -(self.view.width / 3);
-        self.scrollView.x = -(self.view.width / 3);
-        self.functionOptionView.leftSpacingByView(self.scrollView,0);
+        self.textView.x = -(self.view.width / 3);
+        self.functionOptionView.leftSpacingByView(self.textView,0);
     }];
 }
 
@@ -116,15 +118,15 @@
 - (void)viewRightSlipAnimate {
     [UIView animateWithDuration:0.15 animations:^{
         self.navigationController.navigationBar.x = 0;
-        self.scrollView.x = 0;
-        self.functionOptionView.leftSpacingByView(self.scrollView,0);
+        self.textView.x = 0;
+        self.functionOptionView.leftSpacingByView(self.textView,0);
     }];
 }
 
 #pragma mark - 响应事件
 
 - (void)navigationBarWithRightBarButtonItem:(UIBarButtonItem *)sender {
-    if (self.scrollView.x < 0) {
+    if (self.textView.x < 0) {
         [self viewRightSlipAnimate];
     }else {
         [self viewLeftSlipAnimate];
@@ -135,7 +137,7 @@
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
         [self viewLeftSlipAnimate];
     }else if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
-        if (self.scrollView.x < 0) {
+        if (self.textView.x < 0) {
             [self viewRightSlipAnimate];
         }else {
             [self.navigationController popViewControllerAnimated:YES];
@@ -166,15 +168,29 @@
     }
 }
 
+#pragma mark - UITextViewDelegate
+
+// 点击链接会调用这个代理方法
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    JCLog(@"%@",URL);
+    return YES;
+}
+
 #pragma mark - set/get
 
-- (UIScrollView *)scrollView {
-    if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc]init];
-        _scrollView.backgroundColor = [UIColor redColor];
-        _scrollView.delegate = self;
+- (void)setText:(NSString *)text {
+    self.textView.attributedText = [NSMutableAttributedString AttributedStringWithText:text Font:[UIFont systemFontOfSize:16]];
+    _text = text;
+}
+
+- (UITextView *)textView {
+    if (!_textView) {
+        _textView = [[UITextView alloc]init];
+        _textView.scrollEnabled = YES;
+        _textView.editable = NO;
+        _textView.delegate = self;
     }
-    return _scrollView;
+    return _textView;
 }
 
 - (UIView *)functionOptionView {

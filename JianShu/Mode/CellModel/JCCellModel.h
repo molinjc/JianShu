@@ -50,6 +50,8 @@ typedef NS_ENUM(NSInteger, JCFindCellModelType){
 
 @property (nonatomic, copy) NSString *articleImage;// 文章内的图片
 
+@property (nonatomic, copy) NSString *articleText; // 文章内容
+
 @end
 
 /**
