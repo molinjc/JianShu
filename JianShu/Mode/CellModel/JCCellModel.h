@@ -15,15 +15,19 @@ typedef NS_ENUM(NSInteger, JCFindCellModelType){
     JCFindCellModelTypeSpecial
 };
 
+@class JCArticleCellModel;
+@class JCSpecialCellModel;
+@class JCDefaultCellModel;
+
 @interface JCCellModel : NSObject
 
 @property (nonatomic, assign) JCFindCellModelType cellModelType;
 
-@property (nonatomic, strong) NSArray *articles;
+@property (nonatomic, strong) JCArticleCellModel *articles;
 
-@property (nonatomic, strong) NSArray *specials;
+@property (nonatomic, strong) JCSpecialCellModel *specials;
 
-@property (nonatomic, strong) NSArray *defaults;
+@property (nonatomic, strong) JCDefaultCellModel *defaults;
 
 @end
 

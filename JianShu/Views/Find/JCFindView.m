@@ -21,9 +21,11 @@
 
 @property (nonatomic, assign) NSInteger      currentShowViewOftag;
 
-@property (nonatomic, strong) NSMutableArray *visiableTables;   // 可见得Table数组
+@property (nonatomic, strong) NSMutableArray *visiableTables;// 可见得Table数组
 
-@property (nonatomic, strong) NSMutableArray *reusableTables;   // 可重复使用的Table数组
+@property (nonatomic, strong) NSMutableArray *reusableTables;// 可重复使用的Table数组
+
+@property (nonatomic, assign) BOOL           reusingStarter; // 重用启动器,默认yes
 
 @end
 
@@ -37,9 +39,9 @@
         [self addSubview:self.sliderButton];
         [self addSubview:self.scrollView];
         self.sliderButton.titles = titles;
-        
+        self.reusingStarter = YES;
         [self setScrollViewWithContentSize:titles];
-        [self creatTableView:titles];
+        [self creatTableViews:titles.count];
     }
     return self;
 }
@@ -51,16 +53,95 @@
     self.scrollView.contentSize = CGSizeMake(self.width * titles.count, self.scrollView.height);
 }
 
-- (void)creatTableView:(NSMutableArray *)titles {
-    if (titles.count <= 0) {
+- (void)creatTableViews:(NSInteger)count {
+    if (count <= 0) {
         return;
     }
-    for (int i=0; i<titles.count; i++) {
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.width * i, 0, self.width, self.scrollView.height) style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.tag = i;
-        [self.scrollView addSubview:tableView];
+    
+    if (count <= 3) {
+        self.reusingStarter = NO;
+    }
+    
+    if (self.reusingStarter) {
+        
+        [self.visiableTables removeAllObjects];
+        [self.reusableTables removeAllObjects];
+        
+        // 刚开始时，只创建两个表格视图，第一个加到可见得Table数组里，另一个加到不可见的数组
+        for (int i=0; i<3; i++) {
+            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.width * i, 0, self.width, self.scrollView.height) style:UITableViewStylePlain];
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            tableView.tag = i;
+            [self.scrollView addSubview:tableView];
+            if (i == 0) {
+                [self.visiableTables addObject:tableView];
+            }else {
+                [self.reusableTables addObject:tableView];
+            }
+        }
+    }else {
+        for (int i=0; i<count; i++) {
+            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(self.width * i, 0, self.width, self.scrollView.height) style:UITableViewStylePlain];
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            tableView.tag = i;
+            [self.scrollView addSubview:tableView];
+        }
+    }
+}
+
+
+#pragma mark - 重用机制
+
+/**
+ *  scrollView向右滑动
+ */
+- (void)scrollViewTowardsRight {
+    
+    // 从可见的拿出Table，清空数组，方便存储下一个要显示的Table，这个visiableTables只有一个元素
+    UITableView *willHideView = self.visiableTables[0];
+    [self.visiableTables removeAllObjects];
+    
+    // 从不可见的拿出第一个Table，这个是要显示的，还要从这个数组清掉它的记录，将要隐藏的Table存进去
+    UITableView *willShowView = self.reusableTables[0];
+    [self.visiableTables addObject:willShowView];
+    [self.reusableTables removeObjectAtIndex:0];
+    [self.reusableTables addObject:willHideView];
+    
+    // 判断reusableTables的个数，小于2，是不够用的，前后都要一个Table来准备显示，
+    // 中间一个已经显示的Table,总共要三个Table，因为这里需求屏幕只显示一张。
+    
+    // Table个数够用了，提前修改下一次向右滑动要显示的Table
+    if (willShowView.tag + 1 != self.sliderButton.titles.count) {
+        UITableView *afreshLoadView = self.reusableTables[0];
+        afreshLoadView.x = (willShowView.tag + 1) * self.width;
+        afreshLoadView.tag = willShowView.tag + 1;
+    }
+
+}
+
+/**
+ *  scrollView向左滑动
+ */
+- (void)scrollViewTowardsLeft {
+    
+    // 同上
+    UITableView *willHideView = self.visiableTables[0];
+    [self.visiableTables removeAllObjects];
+    
+    // 从不可见的拿出最后一个Table，处理同上
+    UITableView *willShowView = self.reusableTables[1];
+    [self.visiableTables addObject:willShowView];
+    [self.reusableTables removeObjectAtIndex:1];
+    [self.reusableTables insertObject:willHideView atIndex:0];
+    
+    // 刚创建时，向左滑动，左边是没Table的，是不会调用此方法的，当向右滑动时，
+    // reusableTables的个数就会达到2,这里就不在判断，只判断Table的tag
+    if (willShowView.tag >= 1) {
+        UITableView *afreshLoadView = self.reusableTables[1];
+        afreshLoadView.x = (willShowView.tag - 1) * self.width;
+        afreshLoadView.tag = willShowView.tag - 1;
     }
 }
 
@@ -70,77 +151,104 @@
     if (tag == self.currentShowViewOftag) {
         return;
     }
-    NSInteger temporaryTag = 0;
-    if (tag > self.currentShowViewOftag) {
-        temporaryTag = tag - 1;
+    
+    if (self.reusingStarter) {
+        UITableView *didShowTable = self.visiableTables[0];
+        if (tag > self.currentShowViewOftag) {
+            didShowTable.x = self.width * (tag - 1);
+        }else if (tag < self.currentShowViewOftag) {
+            didShowTable.x = self.width * (tag + 1);
+        }
+        [self.scrollView setContentOffset:didShowTable.origin animated:NO];
+        UITableView *willShowTable = self.reusableTables[0];
+        willShowTable.x = self.width * tag;
+        willShowTable.tag = tag;
+        [willShowTable reloadData];
+        [self.scrollView setContentOffset:willShowTable.origin animated:YES];
     }else {
-        temporaryTag = tag + 1;
+        [self.scrollView setContentOffset:CGPointMake(self.width * tag, 0) animated:YES];
     }
-    UITableView *currentShowView = nil;
-    CGRect temporaryRect;
-    for (UIView *temporaryView in self.scrollView.subviews) {
-        if (![NSStringFromClass(temporaryView.class) isEqualToString:@"UITableView"]) {
-            continue;
-        }
-        if (temporaryView.tag == temporaryTag) {
-            temporaryRect = temporaryView.frame;
-        }
-        if (temporaryView.tag == self.currentShowViewOftag) {
-            currentShowView = (UITableView *)temporaryView;
-        }
-    }
-    CGRect originalRect = currentShowView.frame;
-    currentShowView.frame = temporaryRect;
-    [self.scrollView setContentOffset:temporaryRect.origin animated:NO];
-    [self.scrollView setContentOffset:CGPointMake(self.width*tag, 0) animated:YES];
-    currentShowView.frame = originalRect;
-    self.currentShowViewOftag = tag;
 }
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
-    
-}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
     if (self.scrollView == scrollView) {
-        UITableView *currentShowView = nil;
-        for (UIView *temporaryView in self.scrollView.subviews) {
-            if (![NSStringFromClass(temporaryView.class) isEqualToString:@"UITableView"]) {
-                continue;
-            }
-            if (temporaryView.tag == self.currentShowViewOftag) {
-                currentShowView = (UITableView *)temporaryView;
+        NSInteger index = (int)scrollView.contentOffset.x / self.width;
+        if (self.reusingStarter) {
+            
+            UITableView *currentShowView = self.visiableTables[0];
+            if (index > currentShowView.tag) {
+                [self scrollViewTowardsRight];
+            }else if (index < currentShowView.tag) {
+                [self scrollViewTowardsLeft];
             }
         }
-        
-        NSInteger index = (int)scrollView.contentOffset.x / self.width;
         [self.sliderButton changeButtonTitleColorWithTag:index];
     }
 }
 
+// 动画结束后会调用
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    if (!self.reusingStarter) {
+        return;
+    }
+    NSInteger index = (int)scrollView.contentOffset.x / self.width;
+    UITableView *didHideTable = self.visiableTables[0];  // 动画结束后，这个Table已经看不到了
+    UITableView *didShowTable = self.reusableTables[0];  // 动画结束后，这个Table已经可见了
+    UITableView *willAlterTable = self.reusableTables[1];
+    
+    [self.visiableTables removeAllObjects];
+    [self.visiableTables addObject:didShowTable];
+    
+    [self.reusableTables removeObjectAtIndex:0];
+    [self.reusableTables addObject:didHideTable];
+    
+    NSInteger reusable_0,reusable_1;
+    if (index == self.sliderButton.titles.count - 1) {
+        reusable_0 = index - 2;
+        reusable_1 = index - 1;
+    }else if (index == 0) {
+        reusable_0 = 1;
+        reusable_1 = 2;
+    }else {
+        reusable_0 = index + 1;
+        reusable_1 = index - 1;
+    }
+    
+    willAlterTable.x = self.width * reusable_0;
+    willAlterTable.tag = reusable_0;
+    [willAlterTable reloadData];
+    
+    didHideTable.x = self.width * reusable_1;
+    didHideTable.tag = reusable_1;
+    [didHideTable reloadData];
+    
+    self.currentShowViewOftag = index;
+}
+
 #pragma mark - UITableViewDataSource,UITableViewDelegate
 
+// 行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.dataDelegate findView:self numberDataFromTag:tableView.tag];
 }
 
+// cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    [self.dataDelegate findView:self dataFromTag:tableView.tag item:indexPath.row];
+    JCCellModel *cellModel = [self.dataDelegate findView:self dataFromTag:tableView.tag item:indexPath.row];
+    if (cellModel.cellModelType == JCFindCellModelTypeOther) {
+        [self.dataDelegate findView:self customCellWithDataFromTag:tableView.tag item:indexPath.row];
+    }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return 380;
-    }
-    return 100;
+    return [self.dataDelegate findView:self heightForRowTag:tableView.tag item:indexPath.row];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -184,7 +292,7 @@
 }
 
 - (NSMutableArray *)reusableTables {
-    if (_reusableTables) {
+    if (!_reusableTables) {
         _reusableTables = [NSMutableArray new];
     }
     return _reusableTables;

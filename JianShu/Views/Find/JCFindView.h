@@ -15,9 +15,11 @@
 
 - (NSInteger)findView:(JCFindView *)findView numberDataFromTag:(NSInteger)tag;
 
-- (id)findView:(JCFindView *)findView dataFromTag:(NSInteger)tag item:(NSInteger)index;
+- (JCCellModel *)findView:(JCFindView *)findView dataFromTag:(NSInteger)tag item:(NSInteger)index;
 
-@optional
+- (UIView *)findView:(JCFindView *)findView customCellWithDataFromTag:(NSInteger)tag item:(NSInteger)index;
+- (CGFloat)findView:(JCFindView *)findView heightForRowTag:(NSInteger)tag item:(NSInteger)index;
+
 - (CGFloat)findView:(JCFindView *)findView heightForHeaderTag:(NSInteger)tag;
 
 - (UIView *)findView:(JCFindView *)findView viewForHeaderTag:(NSInteger)tag;

@@ -85,7 +85,7 @@
     return data.count;
 }
 
-- (id)findView:(JCFindView *)findView dataFromTag:(NSInteger)tag item:(NSInteger)index {
+- (JCCellModel *)findView:(JCFindView *)findView dataFromTag:(NSInteger)tag item:(NSInteger)index {
     NSMutableArray *data = nil;
     if (findView.tag == 101) {
         data = self.firstDataArray[tag];
@@ -93,9 +93,20 @@
         data = self.secondDataArray[tag];
     }
     if (!data) {
-        return @"";
+        return nil;
     }
-    return data[index];
+    
+    JCCellModel *cellM = [JCCellModel new];
+    cellM.cellModelType = JCFindCellModelTypeArticle;
+    return cellM;
+}
+
+- (UIView *)findView:(JCFindView *)findView customCellWithDataFromTag:(NSInteger)tag item:(NSInteger)index {
+    return nil;
+}
+
+- (CGFloat)findView:(JCFindView *)findView heightForRowTag:(NSInteger)tag item:(NSInteger)index {
+    return 100;
 }
 
 - (CGFloat)findView:(JCFindView *)findView heightForHeaderTag:(NSInteger)tag {

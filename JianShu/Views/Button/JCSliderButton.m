@@ -57,6 +57,8 @@
 
 - (void)setTitles:(NSMutableArray *)titles {
     
+    _titles = titles;
+    
     NSString *backgroundScrollViewFrame = NSStringFromCGRect(self.backgroundScrollView.frame);
     if ([backgroundScrollViewFrame isEqualToString:@"{{0, 0}, {0, 0}}"]) {
         self.backgroundScrollView.frame = self.bounds;
