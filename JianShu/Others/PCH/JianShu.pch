@@ -13,6 +13,7 @@
 
 // view 扩展
 #import "UIView+Coordinate.h"
+#import "UIImageView+WebCache.h"
 
 // 颜色
 #define JCColor_red_1 [UIColor colorWithRed:0.863 green:0.310 blue:0.251 alpha:1.000]

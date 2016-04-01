@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JCCellModel.h"
+#import "JCArticleTCell.h"
 
 @interface JCTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) id cellModel;
+@property (nonatomic, strong) JCCellModel *cellModel;
 
-@property (nonatomic, strong) UIImageView *headPortrait;
-
-@property (nonatomic, strong) UILabel     *userNameLabel;
-
-@property (nonatomic, strong) UILabel     *timeLabel;
+@property (nonatomic, strong) JCArticleTCell *articleTCell;
 
 @end

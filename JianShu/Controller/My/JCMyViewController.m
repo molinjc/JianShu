@@ -36,6 +36,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
 //    [self.navigationController setValue:self.orgnavigationBar forKey:@"navigationBar"];
 }
 

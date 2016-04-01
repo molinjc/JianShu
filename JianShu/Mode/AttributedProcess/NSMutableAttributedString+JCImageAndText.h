@@ -37,21 +37,21 @@ typedef NS_ENUM(NSInteger, JCTextType){
 
 @interface JCTextInfo : NSObject
 
-@property (nonatomic, assign) JCTextType type;
+@property (nonatomic, assign) JCTextType  type;
 
-@property (nonatomic, copy  ) NSString   *text;
+@property (nonatomic, copy  ) NSString    *text;
 
 // 当type为JCTextTypeImage时，是图片的文件名，当type为JCTextTypeLink时，是在文本显示的字符串
-@property (nonatomic, copy  ) NSString   *name;
+@property (nonatomic, copy  ) NSString    *name;
 
-@property (nonatomic, assign) CGSize     size;// 图片的大小
+@property (nonatomic, assign) CGSize      size;// 图片的大小
 
-@property (nonatomic, copy  ) NSString   *titel;
+@property (nonatomic, copy  ) NSString    *titel;
 
-@property (nonatomic, copy  ) NSString   *address;// 链接地址
+@property (nonatomic, copy  ) NSString    *address;// 链接地址
 
-@property (nonatomic, assign) CGFloat    fontSize;
+@property (nonatomic, assign) CGFloat     fontSize;
 
-@property (nonatomic, copy  ) NSString   *fontColor;
+@property (nonatomic, copy  ) NSString    *fontColor;
 
 @end

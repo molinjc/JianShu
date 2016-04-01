@@ -8,6 +8,12 @@
 
 #import "JCTableViewCell.h"
 
+#define UISCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+
+@interface JCTableViewCell ()<JCArticleTCellDelegate>
+
+@end
+
 @implementation JCTableViewCell
 
 - (void)awakeFromNib {
@@ -17,15 +23,56 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)setCellModel:(id)cellModel {
-    if ([cellModel isKindOfClass:[JCArticleCellModel class]]) {
-        
+- (void)setCellModel:(JCCellModel *)cellModel {
+    self.width = [UIScreen mainScreen].bounds.size.width;
+    switch (cellModel.cellModelType) {
+        case JCFindCellModelTypeOther: {
+            
+            break;
+        }
+        case JCFindCellModelTypedefault: {
+            
+            break;
+        }
+        case JCFindCellModelTypeArticle: {
+            BOOL isExisted = NO;
+            for (UIView *subV in self.subviews) {
+                if ([subV isKindOfClass:[JCArticleTCell class]]) {
+                    isExisted = YES;
+                    break;
+                }else {
+                    [subV removeFromSuperview];
+                }
+            }
+            
+            if (!self.articleTCell || !isExisted) {
+                self.articleTCell = [[JCArticleTCell alloc]initWithFrame:CGRectMake(0, 0, UISCREEN_WIDTH, 119)];
+                self.articleTCell.articleTCellDelegate = self;
+                [self addSubview:self.articleTCell];
+            }
+            [self.articleTCell setSubViewsFrameAndContent:cellModel.articles];
+            
+            break;
+        }
+        case JCFindCellModelTypeSpecial: {
+            
+            break;
+        }
     }
 }
 
-- (void)addSubview:(UIView *)view {
-    [self removeFromSuperview];
-    [super addSubview:view];
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
+#pragma mark - JCArticleTCellDelegate
+
+- (void)clickButtonWithUser {
+    JCLog(@"用户");
+}
+
+- (void)clickButtonWithSpecial {
+    JCLog(@"专题");
 }
 
 @end

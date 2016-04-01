@@ -13,9 +13,9 @@
 + (instancetype)modelWithJSONName:(NSString *)name {
     NSData *data = [self dataWithJSONName:name];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-    if (![dic isKindOfClass:[NSDictionary class]]) {
-        dic = nil;
-    }
+//    if (![dic isKindOfClass:[NSDictionary class]]) {
+//        dic = nil;
+//    }
     Class className = [self class];
     NSObject *model = [className new];
     [model setValuesForKeysWithDictionary:dic];

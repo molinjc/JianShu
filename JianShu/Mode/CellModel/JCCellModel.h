@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NSObject+JCJSON.h"
+
 typedef NS_ENUM(NSInteger, JCFindCellModelType){
-    JCFindCellModelTypeOther,
+    JCFindCellModelTypeOther  = 0,
     JCFindCellModelTypedefault,
     JCFindCellModelTypeArticle,
     JCFindCellModelTypeSpecial
@@ -28,6 +30,12 @@ typedef NS_ENUM(NSInteger, JCFindCellModelType){
 @property (nonatomic, strong) JCSpecialCellModel *specials;
 
 @property (nonatomic, strong) JCDefaultCellModel *defaults;
+
+@end
+
+@interface JCAllCellModel : NSObject
+
+@property (nonatomic, strong) NSMutableArray *allCellModel;
 
 @end
 

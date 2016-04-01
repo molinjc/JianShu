@@ -120,13 +120,16 @@
     for (int i=0; i<images.count+2; i++) {
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(self.width * i, 0, self.width, self.height)];
         if (i == 0) {
-            imageView.image = [UIImage imageNamed:images[images.count - 1]];  // 第一个位置放最后一张
+//            imageView.image = [UIImage imageNamed:images[images.count - 1]];  // 第一个位置放最后一张
+            [imageView sd_setImageWithURL:[NSURL URLWithString:images[images.count - 1]]];
             imageView.tag = images.count - 1;
         }else if (i == images.count + 1) {
-            imageView.image = [UIImage imageNamed:images[0]];   //最后的位置放第一张
+//            imageView.image = [UIImage imageNamed:images[0]];   //最后的位置放第一张
+            [imageView sd_setImageWithURL:[NSURL URLWithString:images[0]]];
             imageView.tag = 0;
         }else {
-            imageView.image = [UIImage imageNamed:images[i-1]];
+//            imageView.image = [UIImage imageNamed:images[i-1]];
+            [imageView sd_setImageWithURL:[NSURL URLWithString:images[i - 1]]];
             imageView.tag = i - 1;
         }
         [self.scrollView addSubview:imageView];

@@ -14,18 +14,20 @@
 #import "JCOptionItemView.h"
 
 #import "JCCellModel.h"
-#import "NSObject+JCJSON.h"
 
 #define ButtonsView_Height   35.0
 #define Button_Width         90.0
 #define NavigationBar_Height 64.0
+#define JCFINDVIEWFRAME_X(x) CGRectMake(x, NavigationBar_Height, self.view.width, self.view.height - NavigationBar_Height - self.tabBarController.tabBar.height)
+#define JCScrollAndPageControlView_Height (self.view.width * 1000 / 2048)
 
 @interface JCFindViewController ()<JCFindViewDataDelegate>
 
-@property (nonatomic, strong) NSMutableArray *firstDataArray;
+@property (nonatomic, strong) NSMutableArray *firstData;
 
 @property (nonatomic, strong) NSMutableArray *secondDataArray;
-
+@property (nonatomic, strong) UIImage *im;
+@property (nonatomic, strong) UIImageView *iv;
 @end
 
 @implementation JCFindViewController
@@ -53,19 +55,20 @@
     self.navigationItem.backBarButtonItem = backItem;
 }
 
+
 /**
  *  创建JCScrollAndPageControlView类
  */
 - (JCScrollAndPageControlView *)creatScrollAndPageControlView {
     NSMutableArray *images = [NSMutableArray new];
-    [images addObject:@"advertisement_1"];
-    [images addObject:@"advertisement_2"];
-    [images addObject:@"advertisement_3"];
-    [images addObject:@"advertisement_4"];
-    [images addObject:@"advertisement_5"];
+    [images addObject:@"http://a.hiphotos.baidu.com/ting/pic/item/94cad1c8a786c917c49e9e83ce3d70cf3ac757ef.jpg"];
+    [images addObject:@"http://a.hiphotos.baidu.com/ting/pic/item/c8177f3e6709c93dc0063c4c983df8dcd0005490.jpg"];
+    [images addObject:@"http://b.hiphotos.baidu.com/ting/pic/item/11385343fbf2b2114f9c31f7cd8065380dd78edd.jpg"];
+    [images addObject:@"http://c.hiphotos.baidu.com/ting/pic/item/e850352ac65c1038af4da57ab5119313b07e8953.jpg"];
+    [images addObject:@"http://a.hiphotos.baidu.com/ting/pic/item/c8177f3e6709c93d04f77840983df8dcd100547b.jpg"];
     
     
-    JCScrollAndPageControlView *sapv = [[JCScrollAndPageControlView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 380) images:images];
+    JCScrollAndPageControlView *sapv = [[JCScrollAndPageControlView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, JCScrollAndPageControlView_Height) images:images];
     return sapv;
 }
 
@@ -73,75 +76,77 @@
 
 - (NSInteger)findView:(JCFindView *)findView numberDataFromTag:(NSInteger)tag {
     
-    NSMutableArray *data = nil;
+    NSInteger count = 0;
     if (findView.tag == 101) {
-        data = self.firstDataArray[tag];
+        count = self.firstData.count;
+        if (tag == 0) {
+            count++;
+        }
     }else {
-        data = self.secondDataArray[tag];
+        count = self.secondDataArray.count;
     }
-    if (!data) {
-        return 0;
-    }
-    return data.count;
+    return count;
 }
 
 - (JCCellModel *)findView:(JCFindView *)findView dataFromTag:(NSInteger)tag item:(NSInteger)index {
-    NSMutableArray *data = nil;
-    if (findView.tag == 101) {
-        data = self.firstDataArray[tag];
-    }else {
-        data = self.secondDataArray[tag];
-    }
-    if (!data) {
-        return nil;
-    }
-    
     JCCellModel *cellM = [JCCellModel new];
-    cellM.cellModelType = JCFindCellModelTypeArticle;
+    if (findView.tag == 101) {
+        if (tag == 0 ) {
+            
+            if ( index == 0) {
+                cellM.cellModelType = JCFindCellModelTypeOther;
+            }else {
+                cellM  = self.firstData[index - 1];
+            }
+            
+        }else {
+            cellM  = self.firstData[index];
+        }
+       
+    }else {
+      
+    }
     return cellM;
 }
 
 - (UIView *)findView:(JCFindView *)findView customCellWithDataFromTag:(NSInteger)tag item:(NSInteger)index {
+    if (findView.tag == 101 && tag == 0 && index == 0) {
+        return [self creatScrollAndPageControlView];
+    }
     return nil;
 }
 
 - (CGFloat)findView:(JCFindView *)findView heightForRowTag:(NSInteger)tag item:(NSInteger)index {
-    return 100;
+    if (findView.tag == 101 && tag == 0 && index == 0) {
+        return JCScrollAndPageControlView_Height;
+    }
+    return 120;
 }
 
 - (CGFloat)findView:(JCFindView *)findView heightForHeaderTag:(NSInteger)tag {
-    if (findView.tag == 101) {
-        if (tag == 0) {
-            return 0.0;
-        }
-        return 0.0;
-    }else {
-        if (tag == 0) {
-            return 50.0;
-        }
-        return 0.0;
-    }
+    return 0.0;
 }
 
 - (UIView *)findView:(JCFindView *)findView viewForHeaderTag:(NSInteger)tag {
-    if (findView.tag == 101) {
-        if (tag == 0) {
-            return [self creatScrollAndPageControlView];
-        }
-        return nil;
-    }else {
-        if (tag == 0) {
-            return nil;
-        }
-        return nil;
-    }
+    return nil;
 }
 
 - (void)findView:(JCFindView *)findView didSelectTag:(NSInteger)tag selectRowAtIndex:(NSInteger)index {
-    JCTextController *textController = [[JCTextController alloc]init];
-    NSString *ss = @"我看你啥肯定会哭敬爱上课的骄傲\n<font color=red;text=红色的几个字;size=50/>\n和数据库等哈说看见的哈萨克接电话 \n<image name=222;titel=头像/>\n肯德基十分大好时机开发和会计师的回复你心脏病铲门男<link name=链接哦！;address=http://blog.csdn.net/reylen/article/details/18958995/>djfhkshdf按实际的贺卡寄售点卡就爱上的空间哈就收到货就卡上的金卡圣诞节卡刷卡的交换机的收费比你先把草泥马心脏病草泥马我看你啥肯定会哭敬爱上课的骄傲\n<font color=red;text=红色的几个字;size=50/>\n和数据库等哈说看见的哈萨克接电话 \n<image name=222;titel=头像/>\n肯德基十分大好时机开发和会计师的回复你心脏病铲门男<link name=链接哦！;address=http://blog.csdn.net/reylen/article/details/18958995/>djfhkshdf按实际的贺卡寄售点卡就爱上的空间哈就收到货就卡上的金卡圣诞节卡刷卡的交换机的收费比你先把草泥马心脏病草泥马我看你啥肯定会哭敬爱上课的骄傲\n<font color=red;text=红色的几个字;size=50/>\n和数据库等哈说看见的哈萨克接电话 \n<image name=222;titel=头像/>\n肯德基十分大好时机开发和会计师的回复你心脏病铲门男<link name=链接哦！;address=http://blog.csdn.net/reylen/article/details/18958995/>djfhkshdf按实际的贺卡寄售点卡就爱上的空间哈就收到货就卡上的金卡圣诞节卡刷卡的交换机的收费比你先把草泥马心脏病草泥马我看你啥肯定会哭敬爱上课的骄傲\n<font color=red;text=红色的几个字;size=50/>\n和数据库等哈说看见的哈萨克接电话 \n<image name=222;titel=头像/>\n肯德基十分大好时机开发和会计师的回复你心脏病铲门男<link name=链接哦！;address=http://blog.csdn.net/reylen/article/details/18958995/>djfhkshdf按实际的贺卡寄售点卡就爱上的空间哈就收到货就卡上的金卡圣诞节卡刷卡的交换机的收费比你先把草泥马心脏病草泥马我看你啥肯定会哭敬爱上课的骄傲\n<font color=red;text=红色的几个字;size=50/>\n和数据库等哈说看见的哈萨克接电话 \n<image name=222;titel=头像/>\n肯德基十分大好时机开发和会计师的回复你心脏病铲门男<link name=链接哦！;address=http://blog.csdn.net/reylen/article/details/18958995/>djfhkshdf按实际的贺卡寄售点卡就爱上的空间哈就收到货就卡上的金卡圣诞节卡刷卡的交换机的收费比你先把草泥马心脏病草泥马我看你啥肯定会哭敬爱上课的骄傲\n<font color=red;text=红色的几个字;size=50/>\n和数据库等哈说看见的哈萨克接电话 \n<image name=222;titel=头像/>\n肯德基十分大好时机开发和会计师的回复你心脏病铲门男<link name=链接哦！;address=http://blog.csdn.net/reylen/article/details/18958995/>djfhkshdf按实际的贺卡寄售点卡就爱上的空间哈就收到货就卡上的金卡圣诞节卡刷卡的交换机的收费比你先把草泥马心脏病草泥马";
-    textController.text = ss;
-    [self.navigationController pushViewController:textController animated:YES];
+     JCTextController *textController = [[JCTextController alloc]init];
+    JCCellModel *cellM = nil;
+    if (findView.tag == 101 ) {
+        if (tag == 0 && index != 0) {
+            cellM = self.firstData[index - 1];
+        }else {
+            cellM = self.firstData[index];
+        }
+        textController.text = cellM.articles.articleText;
+        [self.navigationController pushViewController:textController animated:YES];
+    }else {
+        
+    }
+    
+   
 }
 
 #pragma mark - set/get
@@ -158,7 +163,7 @@
         [titles addObject:@"市集"];
         [titles addObject:@"七日热门"];
         [titles addObject:@"三十日热门"];
-        _firstView = [[JCFindView alloc]initWithFrame:CGRectMake(0, NavigationBar_Height, self.view.width, self.view.height - NavigationBar_Height) titles:titles];
+        _firstView = [[JCFindView alloc]initWithFrame:JCFINDVIEWFRAME_X(0) titles:titles];
         _firstView.dataDelegate = self;
         _firstView.tag = 101;
     }
@@ -170,25 +175,19 @@
         NSMutableArray *titles = [NSMutableArray new];
         [titles addObject:@"热门"];
         [titles addObject:@"推荐"];
-        _secondView = [[JCFindView alloc]initWithFrame:CGRectMake(self.view.width, NavigationBar_Height, self.view.width, self.view.height - NavigationBar_Height) titles:titles];
+        _secondView = [[JCFindView alloc]initWithFrame:JCFINDVIEWFRAME_X(self.view.width) titles:titles];
         _secondView.dataDelegate = self;
         _secondView.tag = 102;
     }
     return _secondView;
 }
 
-- (NSMutableArray *)firstDataArray {
-    if (!_firstDataArray) {
-        _firstDataArray = [NSMutableArray new];
-        for (int i=0; i<9; i++) {
-            NSMutableArray *arr = [NSMutableArray new];
-            for (int j=0; j<9; j++) {
-                [arr addObject:[NSString stringWithFormat:@"%d",j]];
-            }
-            [_firstDataArray addObject:arr];
-        }
+- (NSMutableArray *)firstData {
+    if (!_firstData) {
+        JCAllCellModel *allcell = [JCAllCellModel modelWithJSONName:@"FindJSON"];
+        _firstData = allcell.allCellModel;
     }
-    return _firstDataArray;
+    return _firstData;
 }
 
 - (NSMutableArray *)secondDataArray {

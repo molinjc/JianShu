@@ -43,6 +43,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.headNavigationBar.headPortrait = nil;
 }
 

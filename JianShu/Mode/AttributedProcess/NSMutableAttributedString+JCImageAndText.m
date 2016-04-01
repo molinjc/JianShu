@@ -33,6 +33,7 @@
     NSMutableArray *array = [NSMutableArray new];
     [self separateWithText:text storageToArray:array];
     NSMutableAttributedString *attributedString = [self AttributedStringWithJCTextInfo:array font:font];
+    [array removeAllObjects];
     return attributedString;
 }
 
@@ -58,7 +59,6 @@
             // 创建一个文本附件
             NSTextAttachment *attachment = [[NSTextAttachment alloc]init];
             attachment.image = [UIImage imageNamed:info.name];
-            attachment.bounds = CGRectMake(0, 0, info.size.width, info.size.height);
             NSMutableAttributedString *attImage = [[NSMutableAttributedString alloc]initWithString:@"\n"];
             [attImage appendAttributedString:[NSAttributedString attributedStringWithAttachment:attachment]];
             
@@ -185,7 +185,7 @@
             NSRange signRange    = [str rangeOfString:@"="];
             
             if (signRange.length && nameRange.length) {
-                info.name = [str substringWithRange:NSMakeRange(signRange.location+1, str.length-signRange.location-1)];
+                info.name = [str substringWithRange:NSMakeRange(signRange.location+1, str.length-signRange.location-1)];                
             }
             
             if (signRange.length && sizeRange.length) {

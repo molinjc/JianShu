@@ -10,6 +10,7 @@
 #import "JCSliderButton.h"
 
 #import "JCScrollAndPageControlView.h"
+#import "JCTableViewCell.h"
 
 #define SliderButton_Height   40.0
 
@@ -73,12 +74,14 @@
             tableView.delegate = self;
             tableView.dataSource = self;
             tableView.tag = i;
+            
             [self.scrollView addSubview:tableView];
             if (i == 0) {
                 [self.visiableTables addObject:tableView];
             }else {
                 [self.reusableTables addObject:tableView];
             }
+            [tableView reloadData];
         }
     }else {
         for (int i=0; i<count; i++) {
@@ -87,6 +90,7 @@
             tableView.dataSource = self;
             tableView.tag = i;
             [self.scrollView addSubview:tableView];
+             [tableView reloadData];
         }
     }
 }
@@ -109,14 +113,12 @@
     [self.reusableTables removeObjectAtIndex:0];
     [self.reusableTables addObject:willHideView];
     
-    // 判断reusableTables的个数，小于2，是不够用的，前后都要一个Table来准备显示，
-    // 中间一个已经显示的Table,总共要三个Table，因为这里需求屏幕只显示一张。
-    
     // Table个数够用了，提前修改下一次向右滑动要显示的Table
     if (willShowView.tag + 1 != self.sliderButton.titles.count) {
         UITableView *afreshLoadView = self.reusableTables[0];
         afreshLoadView.x = (willShowView.tag + 1) * self.width;
         afreshLoadView.tag = willShowView.tag + 1;
+        [afreshLoadView reloadData];
     }
 
 }
@@ -142,6 +144,7 @@
         UITableView *afreshLoadView = self.reusableTables[1];
         afreshLoadView.x = (willShowView.tag - 1) * self.width;
         afreshLoadView.tag = willShowView.tag - 1;
+        [afreshLoadView reloadData];
     }
 }
 
@@ -167,6 +170,7 @@
         [self.scrollView setContentOffset:willShowTable.origin animated:YES];
     }else {
         [self.scrollView setContentOffset:CGPointMake(self.width * tag, 0) animated:YES];
+        self.currentShowViewOftag = tag;
     }
 }
 
@@ -236,13 +240,17 @@
 
 // cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    JCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[JCTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    
     JCCellModel *cellModel = [self.dataDelegate findView:self dataFromTag:tableView.tag item:indexPath.row];
     if (cellModel.cellModelType == JCFindCellModelTypeOther) {
-        [self.dataDelegate findView:self customCellWithDataFromTag:tableView.tag item:indexPath.row];
+        [cell.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+         [cell addSubview:[self.dataDelegate findView:self customCellWithDataFromTag:tableView.tag item:indexPath.row]];
+    }else {
+        [cell setCellModel:cellModel];
     }
     return cell;
 }
@@ -261,6 +269,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     [self.dataDelegate findView:self didSelectTag:tableView.tag selectRowAtIndex:indexPath.row];
 }
 
