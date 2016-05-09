@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		35064FAF1C929E5700481CAC /* JCTextController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35064FAE1C929E5700481CAC /* JCTextController.m */; };
+		350B73601CD06A5A00B7797A /* JCTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B735F1CD06A5A00B7797A /* JCTextView.m */; };
+		350B736C1CD1B39100B7797A /* JCToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B736B1CD1B39100B7797A /* JCToolbar.m */; };
+		350B736F1CD20CEE00B7797A /* JCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 350B736E1CD20CEE00B7797A /* JCMenuView.m */; };
 		352A9D461CAA8B8C00699950 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 352A9D261CAA8B8C00699950 /* MKAnnotationView+WebCache.m */; };
 		352A9D471CAA8B8C00699950 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 352A9D281CAA8B8C00699950 /* NSData+ImageContentType.m */; };
 		352A9D481CAA8B8C00699950 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 352A9D2A1CAA8B8C00699950 /* SDImageCache.m */; };
@@ -41,6 +44,7 @@
 		35645DFA1C804FDF00E6494C /* JCFindNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35645DF91C804FDF00E6494C /* JCFindNavigationController.m */; };
 		35645DFE1C80505500E6494C /* JCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35645DFD1C80505500E6494C /* JCNavigationBar.m */; };
 		3564CF6A1CA9146600485FB2 /* UIButton+JCMixedArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3564CF691CA9146600485FB2 /* UIButton+JCMixedArrangement.m */; };
+		357A7C4D1CD846F200CC6E06 /* JCButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 357A7C4C1CD846F200CC6E06 /* JCButton.m */; };
 		358070661CA0E2EE00169420 /* JCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 358070651CA0E2EE00169420 /* JCTableViewCell.m */; };
 		358070691CA0E93900169420 /* JCRoundImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 358070681CA0E93900169420 /* JCRoundImageButton.m */; };
 		358E96621C86D09A0073EA04 /* JCHeadNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 358E96611C86D09A0073EA04 /* JCHeadNavigationViewController.m */; };
@@ -63,6 +67,12 @@
 /* Begin PBXFileReference section */
 		35064FAD1C929E5700481CAC /* JCTextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTextController.h; sourceTree = "<group>"; };
 		35064FAE1C929E5700481CAC /* JCTextController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTextController.m; sourceTree = "<group>"; };
+		350B735E1CD06A5A00B7797A /* JCTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTextView.h; sourceTree = "<group>"; };
+		350B735F1CD06A5A00B7797A /* JCTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTextView.m; sourceTree = "<group>"; };
+		350B736A1CD1B39100B7797A /* JCToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCToolbar.h; sourceTree = "<group>"; };
+		350B736B1CD1B39100B7797A /* JCToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCToolbar.m; sourceTree = "<group>"; };
+		350B736D1CD20CEE00B7797A /* JCMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCMenuView.h; sourceTree = "<group>"; };
+		350B736E1CD20CEE00B7797A /* JCMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCMenuView.m; sourceTree = "<group>"; };
 		352A9D251CAA8B8C00699950 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		352A9D261CAA8B8C00699950 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		352A9D271CAA8B8C00699950 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -129,6 +139,8 @@
 		35645DFD1C80505500E6494C /* JCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCNavigationBar.m; sourceTree = "<group>"; };
 		3564CF681CA9146600485FB2 /* UIButton+JCMixedArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+JCMixedArrangement.h"; sourceTree = "<group>"; };
 		3564CF691CA9146600485FB2 /* UIButton+JCMixedArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+JCMixedArrangement.m"; sourceTree = "<group>"; };
+		357A7C4B1CD846F200CC6E06 /* JCButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCButton.h; sourceTree = "<group>"; };
+		357A7C4C1CD846F200CC6E06 /* JCButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCButton.m; sourceTree = "<group>"; };
 		358070641CA0E2EE00169420 /* JCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCTableViewCell.h; sourceTree = "<group>"; };
 		358070651CA0E2EE00169420 /* JCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCTableViewCell.m; sourceTree = "<group>"; };
 		358070671CA0E93900169420 /* JCRoundImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCRoundImageButton.h; sourceTree = "<group>"; };
@@ -182,6 +194,24 @@
 				35064FAE1C929E5700481CAC /* JCTextController.m */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		350B735D1CD06A4100B7797A /* Texts */ = {
+			isa = PBXGroup;
+			children = (
+				350B735E1CD06A5A00B7797A /* JCTextView.h */,
+				350B735F1CD06A5A00B7797A /* JCTextView.m */,
+			);
+			path = Texts;
+			sourceTree = "<group>";
+		};
+		350B73691CD1B38200B7797A /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				350B736A1CD1B39100B7797A /* JCToolbar.h */,
+				350B736B1CD1B39100B7797A /* JCToolbar.m */,
+			);
+			path = Toolbar;
 			sourceTree = "<group>";
 		};
 		352A9D241CAA8B8C00699950 /* SDWebImage */ = {
@@ -289,6 +319,8 @@
 		354902281C7AEDB900E09B83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				350B73691CD1B38200B7797A /* Toolbar */,
+				350B735D1CD06A4100B7797A /* Texts */,
 				35F5ADD71CA3DF970086217E /* Extend */,
 				358070631CA0E26D00169420 /* Cells */,
 				35D4CE461C841CE7002E32B0 /* Find */,
@@ -468,6 +500,10 @@
 				35D4CE441C83EC43002E32B0 /* JCSliderButton.m */,
 				358070671CA0E93900169420 /* JCRoundImageButton.h */,
 				358070681CA0E93900169420 /* JCRoundImageButton.m */,
+				350B736D1CD20CEE00B7797A /* JCMenuView.h */,
+				350B736E1CD20CEE00B7797A /* JCMenuView.m */,
+				357A7C4B1CD846F200CC6E06 /* JCButton.h */,
+				357A7C4C1CD846F200CC6E06 /* JCButton.m */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -573,15 +609,18 @@
 				358E966B1C8814EB0073EA04 /* JCOptionNavigationBar.m in Sources */,
 				358070661CA0E2EE00169420 /* JCTableViewCell.m in Sources */,
 				352A9D4D1CAA8B8C00699950 /* SDWebImageManager.m in Sources */,
+				350B736C1CD1B39100B7797A /* JCToolbar.m in Sources */,
 				358E966E1C88331A0073EA04 /* JCOptionViewController.m in Sources */,
 				35645DFA1C804FDF00E6494C /* JCFindNavigationController.m in Sources */,
 				352A9D511CAA8B8C00699950 /* UIImage+MultiFormat.m in Sources */,
 				358E96651C86D1370073EA04 /* JCHeadNavigationBar.m in Sources */,
 				352A9D4B1CAA8B8C00699950 /* SDWebImageDownloader.m in Sources */,
+				350B736F1CD20CEE00B7797A /* JCMenuView.m in Sources */,
 				35064FAF1C929E5700481CAC /* JCTextController.m in Sources */,
 				352A9D521CAA8B8C00699950 /* UIImage+WebP.m in Sources */,
 				3549026A1C7F12FA00E09B83 /* JCMyViewController.m in Sources */,
 				3549025E1C7E932100E09B83 /* JCFindViewController.m in Sources */,
+				357A7C4D1CD846F200CC6E06 /* JCButton.m in Sources */,
 				3564CF6A1CA9146600485FB2 /* UIButton+JCMixedArrangement.m in Sources */,
 				352A9D531CAA8B8C00699950 /* UIImageView+HighlightedWebCache.m in Sources */,
 				352A9D4A1CAA8B8C00699950 /* SDWebImageDecoder.m in Sources */,
@@ -589,6 +628,7 @@
 				354902621C7E943700E09B83 /* JCFollowViewController.m in Sources */,
 				35645DFE1C80505500E6494C /* JCNavigationBar.m in Sources */,
 				35D2A7061C9FD32B009AC0B6 /* JCCellModel.m in Sources */,
+				350B73601CD06A5A00B7797A /* JCTextView.m in Sources */,
 				358070691CA0E93900169420 /* JCRoundImageButton.m in Sources */,
 				35F5ADDE1CA3DF970086217E /* UIColor+JCString.m in Sources */,
 				35F5ADDF1CA3DF970086217E /* UIView+Coordinate.m in Sources */,

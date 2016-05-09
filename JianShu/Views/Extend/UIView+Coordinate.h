@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger,UIViewWithSuperPosition){
 @property (nonatomic, assign) CGFloat topSpacing;    // 上间距
 @property (nonatomic, assign) CGFloat bottomSpacing; // 下间距
 
+@property (nonatomic, copy, readonly) void (^toSize)(CGFloat width, CGFloat height); // 设置size
+
 @property (nonatomic, copy, readonly) void (^edgeInsets)(UIEdgeInsets edge);  // 上左下右，设置边距
 
 @property (nonatomic, copy, readonly) void (^edgeEqualTo)(UIView *view);  // UIEdgeInsets与另一个View一样
@@ -88,6 +90,9 @@ typedef NS_ENUM(NSInteger,UIViewWithSuperPosition){
 
 // 参考某一个view的height，在这基础上加上value
 @property (nonatomic, copy, readonly) void (^heightEqulTo)(UIView *view, CGFloat value);
+
+// 参考某一个view的size，在这基础上加上value
+@property (nonatomic, copy, readonly) void (^sizeEqulTo)(UIView *view, CGFloat value);
 
 /**
  *  UILabel计算文本高度

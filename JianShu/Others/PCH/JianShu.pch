@@ -9,7 +9,15 @@
 #ifndef JianShu_pch
 #define JianShu_pch
 
-#define JCLog(string,...) NSLog(@"行号:%d,类与方法:%s,内容:%@",__LINE__,__func__,[NSString stringWithFormat:(string), ##__VA_ARGS__]);
+#define XCODE_COLORS_ESCAPE @"\033["
+#define XCODE_COLORS_RESET_FG XCODE_COLORS_ESCAPE @"fg;" // Clear any foreground color
+#define XCODE_COLORS_RESET_BG XCODE_COLORS_ESCAPE @"bg;" // Clear any background color
+#define XCODE_COLORS_RESET XCODE_COLORS_ESCAPE @";"      // Clear any foreground or background color
+
+#define JCLog(string,...) NSLog((XCODE_COLORS_ESCAPE @"fg128,64,0;" @"行号:" XCODE_COLORS_ESCAPE @"fg0,201,87;" @"%d  " XCODE_COLORS_ESCAPE @"fg128,64,0;" @"类与方法:" XCODE_COLORS_ESCAPE @"fg0,201,87;" @"%s  " XCODE_COLORS_ESCAPE @"fg128,64,0;" @"内容:" XCODE_COLORS_ESCAPE @"fg0,0,0;" string XCODE_COLORS_RESET),__LINE__,__func__,##__VA_ARGS__)
+
+
+//#define JCLog(string,...) NSLog(@"行号:%d,类与方法:%s,内容:%@",__LINE__,__func__,[NSString stringWithFormat:(string), ##__VA_ARGS__]);
 
 // view 扩展
 #import "UIView+Coordinate.h"

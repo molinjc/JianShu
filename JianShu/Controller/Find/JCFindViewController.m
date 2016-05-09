@@ -41,7 +41,6 @@
     
     [self.view addSubview:self.firstView];
     [self.view addSubview:self.secondView];
-    
 }
 
 - (void)didReceiveMemoryWarning {

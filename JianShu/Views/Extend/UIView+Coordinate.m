@@ -372,6 +372,26 @@
     };
 }
 
+/**
+ *  参考某一个view的size，在这基础上加上value
+ */
+- (void (^)(UIView *view, CGFloat value))sizeEqulTo {
+    return ^(UIView *view, CGFloat value) {
+        self.width = view.width + value;
+        self.height = view.height + value;
+    };
+}
+
+/**
+ *  设置size
+ */
+- (void (^)(CGFloat width, CGFloat height))toSize {
+    return ^(CGFloat width, CGFloat height) {
+        self.width = width;
+        self.height = height;
+    };
+}
+
 #pragma mark - Setters
 
 - (void)setLeftSpacing:(CGFloat)leftSpacing {
@@ -380,7 +400,11 @@
 
 - (void)setRightSpacing:(CGFloat)rightSpacing {
     UIView *superView = self.superview;
-    self.width = superView.width - rightSpacing - self.x;
+    if (superView != nil) {
+        self.x = superView.width - rightSpacing - self.width;
+    }else {
+        self.x = SCREENSIZE.width - rightSpacing - self.width;
+    }
 }
 
 - (void)setTopSpacing:(CGFloat)topSpacing {

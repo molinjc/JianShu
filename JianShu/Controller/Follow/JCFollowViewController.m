@@ -56,7 +56,7 @@
 #pragma mark - JCOptionItemViewDelegate
 
 - (void)optionItemView:(JCOptionItemView *)optionItemView item:(NSInteger)item {
-    NSLog(@"sss");
+    JCLog(@"sss");
 }
 
 - (JCOptionNavigationBar *)optionNavigationBar {
